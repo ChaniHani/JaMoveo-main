@@ -1,0 +1,27 @@
+<div class="results-container">
+  <div class="results-header">
+    <button class="back-button" (click)="goBack()">← Back to Search</button>
+    <h1 class="results-title">Search Results for "{{ searchQuery }}"</h1>
+    <p class="results-count">{{ searchResults.length }} songs found</p>
+  </div>
+
+  <div class="search-results">
+    @for(song of searchResults; track song) {
+    <div class="song-card" (click)="selectSong(song)">
+      <img [src]="song.imageUrl" [alt]="song.artist" class="song-image">
+      <div class="song-info">
+        <h3 class="song-name">{{ song.title }}</h3>
+        <p class="song-artist">{{ song.artist }}</p>
+      </div>
+    </div>
+    }
+
+  </div>
+  @if(searchResults.length === 0){
+  <div class="no-results">
+    <h2>No songs found</h2>
+    <p>Try a different search term</p>
+  </div>
+  }
+
+</div>

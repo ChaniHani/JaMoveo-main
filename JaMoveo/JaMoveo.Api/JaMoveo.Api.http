@@ -1,0 +1,6 @@
+@JaMoveo.Api_HostAddress = http://localhost:5043
+
+GET {{JaMoveo.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

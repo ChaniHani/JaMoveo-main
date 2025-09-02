@@ -1,0 +1,332 @@
+.loading-container,
+.error-container {
+  text-align: center;
+  padding: 4rem 2rem;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-spinner {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.error-container {
+  background: rgba(255, 107, 107, 0.1);
+  border-radius: 15px;
+  border: 2px solid rgba(255, 107, 107, 0.3);
+}
+
+.error-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.refresh-button {
+  background: linear-gradient(45deg, #4facfe, #00f2fe);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.refresh-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+}
+
+.song-header {
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.language-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.lang-en {
+  background: rgba(79, 172, 254, 0.3);
+  color: #4facfe;
+}
+
+.lang-he {
+  background: rgba(240, 147, 251, 0.3);
+  color: #f093fb;
+}
+
+.song-display {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.back-button {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 2rem;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* הבטחת קריאות טובה */
+.lyrics-line,
+.chord-line {
+  font-size: 1.6rem;
+  line-height: 2.2;
+  margin-bottom: 0.8rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 768px) {
+
+  .lyrics-line,
+  .chord-line {
+    font-size: 1.4rem;
+    line-height: 2;
+  }
+}
+
+.structured-content {
+  font-family: 'Courier New', monospace;
+  line-height: 1.8;
+}
+
+.song-line {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.chords-line {
+  color: #4facfe;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+  white-space: pre;
+  direction: ltr;
+  /* אקורדים תמיד משמאל לימין */
+}
+
+.lyrics-line {
+  color: #ffffff;
+  font-size: 1.6rem;
+  font-weight: bold;
+  white-space: pre;
+}
+
+.chord-span {
+  display: inline-block;
+}
+
+.chord {
+  display: inline-block;
+  color: #4facfe;
+  text-align: left;
+  vertical-align: top;
+  min-width: 20px;
+}
+
+.word-span {
+  display: inline;
+  margin-right: 0.5rem;
+}
+
+.song-line[dir="rtl"] .chords-line {
+  text-align: right;
+}
+
+.song-line[dir="rtl"] .lyrics-line {
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .chords-line {
+    font-size: 1rem;
+  }
+
+  .lyrics-line {
+    font-size: 1.4rem;
+  }
+}
+
+
+.structured-content {
+  font-family: 'Courier New', monospace;
+  line-height: 1.8;
+  direction: ltr;
+  /* ברירת מחדל */
+}
+
+.song-line {
+  margin-bottom: 2rem;
+  position: relative;
+  white-space: nowrap;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+/* עבור שורות בעברית */
+.song-line[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+.chords-line {
+  color: #4facfe;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+  min-height: 1.3rem;
+  white-space: nowrap;
+}
+
+.lyrics-line {
+  color: #ffffff;
+  font-size: 1.6rem;
+  font-weight: bold;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.chord-container,
+.word-container {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+}
+
+.chord {
+  color: #4facfe;
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: bold;
+  display: inline-block;
+  white-space: pre;
+}
+
+.word {
+  color: #ffffff;
+  font-size: 1.6rem;
+  font-weight: bold;
+  display: inline-block;
+  text-align: left;
+}
+
+/* יישור מיוחד לעברית */
+.song-line[dir="rtl"] .chord,
+.song-line[dir="rtl"] .word {
+  text-align: right;
+}
+
+/* רווח אחיד בין מילים */
+.chord-container:not(:first-child),
+.word-container:not(:first-child) {
+  margin-right: 0.5rem;
+}
+
+.song-line[dir="rtl"] .chord-container:not(:first-child),
+.song-line[dir="rtl"] .word-container:not(:first-child) {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+/* תמיכה בגלילה אופקית במכשירים קטנים */
+@media (max-width: 768px) {
+  .song-line {
+    overflow-x: scroll;
+    padding-right: 2rem;
+  }
+
+  .chord {
+    font-size: 1rem;
+  }
+
+  .word {
+    font-size: 1.4rem;
+  }
+}
+
+/* עיצוב נוסף */
+.loading-spinner {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* הדגשת האקורדים */
+.chord:not(:empty) {
+  background: rgba(79, 172, 254, 0.1);
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+  border-bottom: 2px solid rgba(79, 172, 254, 0.5);
+}
+
+/* אנימציה חלקה */
+.song-display {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

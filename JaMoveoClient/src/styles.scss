@@ -1,0 +1,358 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+  color: #ffffff;
+  min-height: 100vh;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* High contrast colors for smoky room visibility */
+.high-contrast {
+  background-color: #000000;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #4a5568;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #63b3ed;
+  box-shadow: 0 0 10px rgba(99, 179, 237, 0.3);
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Button Styles */
+.submit-button,
+.search-button,
+.quit-button,
+.scroll-toggle {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.submit-button {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  width: 100%;
+}
+
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.search-button {
+  background: linear-gradient(45deg, #f093fb, #f5576c);
+  color: white;
+}
+
+.quit-button {
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  color: white;
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1000;
+}
+
+.scroll-toggle {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: linear-gradient(45deg, #4facfe, #00f2fe);
+  color: white;
+  border-radius: 50px;
+  z-index: 1000;
+  padding: 1rem 1.5rem;
+}
+
+.scroll-toggle.active {
+  background: linear-gradient(45deg, #fa709a, #fee140);
+}
+
+/* Card Styles */
+.signup-card,
+.login-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Container Styles */
+.signup-container,
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.main-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.live-container {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-bottom: 8rem; /* Space for floating buttons */
+}
+
+/* Typography */
+.signup-title,
+.main-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.song-title {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #63b3ed;
+}
+
+.song-artist {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Live Page Styles */
+.song-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.song-content {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.lyrics-only,
+.full-content {
+  font-size: 1.4rem;
+  line-height: 2;
+}
+
+.chords-section,
+.lyrics-section {
+  margin-bottom: 2rem;
+}
+
+.chords-section h3,
+.lyrics-section h3 {
+  color: #f093fb;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.chord-line,
+.lyrics-line {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.chord-line {
+  color: #4facfe;
+  font-family: 'Courier New', monospace;
+}
+
+.lyrics-line {
+  color: #ffffff;
+}
+
+/* Error Messages */
+.error-message {
+  color: #ff6b6b;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+/* Links */
+.login-link {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.login-link a {
+  color: #63b3ed;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* Search Results */
+.search-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.song-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.song-card:hover {
+  transform: translateY(-5px);
+  border-color: #63b3ed;
+  box-shadow: 0 10px 30px rgba(99, 179, 237, 0.3);
+}
+
+.song-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.song-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.song-artist {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+
+  .signup-card,
+  .login-card {
+    padding: 2rem;
+    margin: 1rem;
+  }
+
+  .song-title {
+    font-size: 2rem;
+  }
+
+  .song-artist {
+    font-size: 1.5rem;
+  }
+
+  .song-content {
+    padding: 1.5rem;
+  }
+
+  .lyrics-only,
+  .full-content {
+    font-size: 1.2rem;
+  }
+
+  .quit-button,
+  .scroll-toggle {
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Loading States */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* No Song State */
+.no-song {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.no-song h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #f093fb;
+}
+
+.no-song p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+}

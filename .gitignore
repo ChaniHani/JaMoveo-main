@@ -1,0 +1,35 @@
+JaMoveo/.vs/JaMoveo/v17/.suo
+JaMoveo/.vs/JaMoveo/FileContentIndex/381235dc-4bac-434a-a322-c27b0d7bf056.vsidx
+JaMoveo/.vs/JaMoveo/v17/DocumentLayout.json
+JaMoveo/.vs/JaMoveo/config/applicationhost.config
+JaMoveo/.vs/JaMoveo/CopilotIndices/17.14.878.3237/CodeChunks.db
+JaMoveo/.vs/JaMoveo/CopilotIndices/17.14.878.3237/CodeChunks.db-shm
+JaMoveo/.vs/JaMoveo/CopilotIndices/17.14.878.3237/CodeChunks.db-wal
+JaMoveo/.vs/JaMoveo/CopilotIndices/17.14.878.3237/SemanticSymbols.db
+JaMoveo/.vs/JaMoveo/CopilotIndices/17.14.878.3237/SemanticSymbols.db-shm
+JaMoveo/.vs/JaMoveo/CopilotIndices/17.14.878.3237/SemanticSymbols.db-wal
+JaMoveo/.vs/JaMoveo/FileContentIndex/b8019a64-53cf-4eb0-81d9-7df671545848.vsidx
+JaMoveo/.vs/JaMoveo/FileContentIndex/c3d9b13a-792f-4f27-be04-3fe9579ca4be.vsidx
+JaMoveo/.vs/JaMoveo/DesignTimeBuild/.dtbcache.v2
+JaMoveo/.vs/JaMoveo/v17/DocumentLayout.backup.json
+JaMoveo/.vs/JaMoveo/FileContentIndex/4ad5054d-c41e-4997-af0e-5d56c976c28d.vsidx
+JaMoveo/.vs/JaMoveo/FileContentIndex/4ad5054d-c41e-4997-af0e-5d56c976c28d.vsidx
+JaMoveo/.vs/JaMoveo/FileContentIndex/20fb827d-0fb7-41fb-9cc2-a9148187ad7a.vsidx
+JaMoveo/.vs/JaMoveo/FileContentIndex/5e5a4f0c-c466-458d-b728-0ca277306a84.vsidx
+JaMoveo/.vs/JaMoveo/FileContentIndex/96859502-4d32-4d4f-aa52-68dbab869366.vsidx
+JaMoveo/.vs/JaMoveo/FileContentIndex/3316c054-8db4-40d3-8486-8e3be7cf5edc.vsidx
+JaMoveo/.vs/JaMoveo/FileContentIndex/379e89e1-c878-4e33-a10c-445a87710024.vsidx
+JaMoveo/.vs/JaMoveo/FileContentIndex/b81dc705-523b-4e34-9bf1-76c9a410d3ea.vsidx
+JaMoveo/.vs/JaMoveo/FileContentIndex/eeb8eaab-c280-45d0-af64-be4f13981203.vsidx
+# Visual Studio cache/options directory
+.vs/
+
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates

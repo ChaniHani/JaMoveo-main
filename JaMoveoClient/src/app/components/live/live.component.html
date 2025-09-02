@@ -1,0 +1,94 @@
+<div class="live-container">
+  @if (loading && !currentSong) {
+    <div class="loading-container">
+      <div class="loading-spinner">⏳</div>
+      <h2>טוען שיר...</h2>
+      <p>ממתין לקבלת פרטי השיר</p>
+    </div>
+  }
+
+  @if (error && !currentSong) {
+    <div class="error-container">
+      <div class="error-icon">❌</div>
+      <h2>{{ error }}</h2>
+      <button class="refresh-button" (click)="refreshSong()">
+        🔄 נסה שוב
+      </button>
+    </div>
+  }
+
+  @if (currentSong && !loading) {
+    <div class="song-header">
+      <h1 class="song-title">{{ currentSong.name }}</h1>
+      <h2 class="song-artist">{{ currentSong.artist }}</h2>
+      <div class="song-language">
+        <span class="language-badge" [class]="'lang-' + currentSong.language">
+          {{ currentSong.language === 'he' ? 'hebrew' : 'English' }}
+        </span>
+      </div>
+    </div>
+
+    <div class="song-content" #songContainer>
+      @if (currentSong?.lines && processedLines.length > 0) {
+        <div class="structured-content">
+          @for (line of processedLines; track $index) {
+            <div class="song-line" [attr.dir]="getLineDirection(line)">
+              @if (!isSinger && hasChords(line)) {
+                <div class="chords-line">
+                  @for (word of line.words; track $index) {
+                    <span class="chord-span" 
+                          [style.margin-left.px]="$index > 0 ? getWordSpacing(line.words[$index-1], word) : 0">
+                      <span class="chord" 
+                            [style.min-width.px]="word.width" 
+                            [style.display]="'inline-block'"
+                            [style.text-align]="'left'">
+                        {{ word.chords || '' }}
+                      </span>
+                    </span>
+                  }
+                </div>
+              }
+              
+              <!-- שורת מילים -->
+              <div class="lyrics-line">
+                @for (word of line.words; track $index) {
+                  <span class="word-container"
+                        [style.margin-left.px]="$index > 0 ? getWordSpacing(line.words[$index-1], word) : 0">
+                    <span class="word" 
+                          [style.min-width.px]="word.width" 
+                          [style.display]="'inline-block'">
+                      {{ word.lyrics }}
+                    </span>
+                  </span>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button class="scroll-toggle" 
+              (click)="toggleAutoScroll()" 
+              [class.active]="autoScroll">
+        {{ autoScroll ? '⏸️ Stop Scroll' : '▶️ Auto Scroll' }}
+      </button>
+
+      @if (isAdmin) {
+        <button class="quit-button" (click)="quitSession()">
+          Quit Session
+        </button>
+      }
+    </div>
+  } @else {
+    <div class="no-song">
+      <h2>No song selected yet</h2>
+      <p>Waiting for the admin to select a song...</p>
+      <button class="back-button" (click)="router.navigate(['/main'])">
+        ← back main page
+      </button>
+    </div>
+  }
+</div>

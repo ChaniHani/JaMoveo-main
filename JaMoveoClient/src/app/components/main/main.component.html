@@ -1,0 +1,70 @@
+<div class="main-container">
+  @if(isAdmin){
+  <div class="admin-section">
+    <h1 class="main-title">ניהול חדר החזרות</h1>
+    <!-- מצב חדר -->
+    <div class="session-status">
+      @if(currentSession){
+      <div class="active-session">
+        <h3>חדר פעיל: {{ currentSession.sessionId }}</h3>
+        <p>משתמשים מחוברים: {{ connectedUsers.length }}</p>
+        <div class="connected-users">
+          @for (user of connectedUsers; track $index) {
+          <span class="user-badge">{{ user }}</span>
+          }
+        </div>
+      </div>
+
+      <div class="admin-section">
+        <h1 class="main-title">Search any song...</h1>
+
+        <div class="search-section">
+          <div class="search-form">
+            <input type="text" [(ngModel)]="searchQuery" (keyup.enter)="searchSongs()"
+              placeholder="Enter song name or artist" class="search-input">
+            <button (click)="searchSongs()" [disabled]="!searchQuery.trim() || searching" class="search-button">
+              {{ searching ? 'Searching...' : 'Search' }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      }
+      @else{
+      <div class="no-session">
+        <h3>{{ waitingMessage }}</h3>
+        @if(showCreateSessionButton){
+        <button (click)="createSession()" class="create-session-button">
+          פתח חדר חזרות חדש
+        </button>
+        }
+      </div>
+      }
+    </div>
+
+    <!-- Admin View -->
+    <div class="user-info">
+      <p>Welcome, {{ authService.currentUserValue?.username }}! You're the admin.</p>
+      <button class="logout-button" (click)="logout()">Logout</button>
+    </div>
+  </div>
+  }
+  @else{
+  <!-- Player View -->
+  <div class="player-section">
+    <h1 class="main-title">{{ waitingMessage }}</h1>
+
+    <div class="waiting-animation">
+      <div class="music-note">♫</div>
+      <div class="music-note">♪</div>
+      <div class="music-note">♫</div>
+    </div>
+
+    <div class="user-info">
+      <p>Welcome, {{ authService.currentUserValue?.username }}!</p>
+      <p>Instrument: {{ authService.currentUserValue?.instrument?.toString() }}</p>
+      <button class="logout-button" (click)="logout()">Logout</button>
+    </div>
+  </div>
+  }
+</div>

@@ -1,0 +1,68 @@
+<div class="signup-container">
+  <div class="signup-card">
+    <h1 class="signup-title">
+      {{ isAdmin ? 'Admin Registration' : 'Join the Band' }}
+    </h1>
+
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="signup-form">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          class="form-input"
+          placeholder="Enter your username">
+        @if (signupForm.get('username')?.invalid && signupForm.get('username')?.touched) {
+          <div class="error-message">
+            Username is required (min 3 characters)
+          </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="form-input"
+          placeholder="Enter your password">
+        @if (signupForm.get('password')?.invalid && signupForm.get('password')?.touched) {
+          <div class="error-message">
+            Password is required (min 6 characters)
+          </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="instrument">Your Instrument</label>
+        <select id="instrument" formControlName="instrument" class="form-select">
+          <option value="">Select your instrument</option>
+          @for (instrument of instruments; track instrument) {
+            <option [value]="instrument">
+              {{ instrument }}
+            </option>
+          }
+        </select>
+        @if (signupForm.get('instrument')?.invalid && signupForm.get('instrument')?.touched) {
+          <div class="error-message">
+            Please select your instrument
+          </div>
+        }
+      </div>
+
+      @if (error) {
+        <div class="error-message">{{ error }}</div>
+      }
+
+      <button type="submit" [disabled]="signupForm.invalid || loading" class="submit-button">
+        {{ loading ? 'Creating Account...' : (isAdmin ? 'Create Admin Account' : 'Join the Band') }}
+      </button>
+    </form>
+
+    <div class="login-link">
+      Already have an account? <a href="javascript:void(0)" (click)="navigate()">Sign in here</a>
+    </div>
+  </div>
+</div>

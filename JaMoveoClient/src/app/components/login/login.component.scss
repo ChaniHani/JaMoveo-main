@@ -1,0 +1,56 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.login-form {
+  margin-bottom: 2rem;
+}
+
+.signup-links {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.signup-links p {
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.signup-link {
+  color: #63b3ed;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.signup-link:hover {
+  color: #4facfe;
+  text-decoration: underline;
+}
+
+.admin-link {
+  color: #f093fb;
+}
+
+.admin-link:hover {
+  color: #fee140;
+}
+
+.separator {
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0.5rem;
+}

@@ -1,7 +1,6 @@
-﻿namespace JaMoveo.Infrastructure.Enums
+﻿namespace JaMoveo.Infrastructure.Enums;
+
+public enum EInstrument
 {
-    public enum EInstrument
-    {
-        Drums, Guitar, Bass, Saxophone, Keyboards, Singers
-    }
+    Drums, Guitar, Bass, Saxophone, Keyboards, Singers
 }

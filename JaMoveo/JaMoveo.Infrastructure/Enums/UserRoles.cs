@@ -1,8 +1,7 @@
-﻿namespace JaMoveo.Infrastructure.Enums
+﻿namespace JaMoveo.Infrastructure.Enums;
+
+public enum UserRole
 {
-    public enum UserRole
-    {
-        Player = 0,
-        Admin = 1
-    }
+    Player = 0,
+    Admin = 1
 }

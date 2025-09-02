@@ -3,138 +3,137 @@ using JaMoveo.Core.DTOs.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace JaMoveo.Api.Controllers
+namespace JaMoveo.Api.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class AuthController : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class AuthController : ControllerBase
+    private readonly IAuthService _authService;
+    private readonly ILogger<AuthController> _logger;
+
+    public AuthController(IAuthService authService, ILogger<AuthController> logger)
     {
-        private readonly IAuthService _authService;
-        private readonly ILogger<AuthController> _logger;
+        _authService = authService;
+        _logger = logger;
+    }
 
-        public AuthController(IAuthService authService, ILogger<AuthController> logger)
+    [HttpPost("signup")]
+    public async Task<IActionResult> SignUp(SignUpRequestDto request)
+    {
+        try
         {
-            _authService = authService;
-            _logger = logger;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await _authService.SignUpAsync(request);
+
+            return Ok(new { message = "User created successfully" });
         }
-
-        [HttpPost("signup")]
-        public async Task<IActionResult> SignUp(SignUpRequestDto request)
+        catch (ArgumentException ex)
         {
-            try
-            {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
-
-                await _authService.SignUpAsync(request);
-
-                return Ok(new { message = "User created successfully" });
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error registering user: {Username}", request.Username);
-                return StatusCode(500, new { message = "An internal error occurred" });
-            }
+            return BadRequest(new { message = ex.Message });
         }
-
-        [HttpPost("signup-admin")]
-        public async Task<IActionResult> SignUpAdmin(SignUpRequestDto request)
+        catch (Exception ex)
         {
-            try
-            {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
-
-                await _authService.SignUpAdminAsync(request);
-
-                return Ok(new { message = "Admin user created successfully" });
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error registering admin: {Username}", request.Username);
-                return StatusCode(500, new { message = "An internal error occurred" });
-            }
+            _logger.LogError(ex, "Error registering user: {Username}", request.Username);
+            return StatusCode(500, new { message = "An internal error occurred" });
         }
+    }
 
-        [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginRequestDto request)
+    [HttpPost("signup-admin")]
+    public async Task<IActionResult> SignUpAdmin(SignUpRequestDto request)
+    {
+        try
         {
-            try
+            if (!ModelState.IsValid)
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
+                return BadRequest(ModelState);
+            }
 
-                var response = await _authService.LoginAsync(request);
+            await _authService.SignUpAdminAsync(request);
 
-                return Ok(response);
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                return Unauthorized(new { message = ex.Message });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error logging in for: {Username}", request.Username);
-                return StatusCode(500, new { message = "An internal error occurred" });
-            }
+            return Ok(new { message = "Admin user created successfully" });
         }
-
-        [HttpGet("check-username/{username}")]
-        public async Task<IActionResult> CheckUsername(string username)
+        catch (ArgumentException ex)
         {
-            try
-            {
-                var isAvailable = await _authService.IsUsernameAvailableAsync(username);
-                return Ok(new { available = isAvailable });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error checking username availability: {Username}", username);
-                return StatusCode(500, new { message = "An internal error occurred" });
-            }
+            return BadRequest(new { message = ex.Message });
         }
-
-        [HttpGet("profile")]
-        [Authorize]
-        public async Task<IActionResult> GetProfile()
+        catch (Exception ex)
         {
-            try
+            _logger.LogError(ex, "Error registering admin: {Username}", request.Username);
+            return StatusCode(500, new { message = "An internal error occurred" });
+        }
+    }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(LoginRequestDto request)
+    {
+        try
+        {
+            if (!ModelState.IsValid)
             {
-                var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-                if (userIdClaim == null)
-                {
-                    return Unauthorized();
-                }
-
-                var userId = int.Parse(userIdClaim.Value);
-                var user = await _authService.GetUserByIdAsync(userId);
-
-                if (user == null)
-                {
-                    return NotFound(new { message = "User not found" });
-                }
-
-                return Ok(user);
+                return BadRequest(ModelState);
             }
-            catch (Exception ex)
+
+            var response = await _authService.LoginAsync(request);
+
+            return Ok(response);
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            return Unauthorized(new { message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error logging in for: {Username}", request.Username);
+            return StatusCode(500, new { message = "An internal error occurred" });
+        }
+    }
+
+    [HttpGet("check-username/{username}")]
+    public async Task<IActionResult> CheckUsername(string username)
+    {
+        try
+        {
+            var isAvailable = await _authService.IsUsernameAvailableAsync(username);
+            return Ok(new { available = isAvailable });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error checking username availability: {Username}", username);
+            return StatusCode(500, new { message = "An internal error occurred" });
+        }
+    }
+
+    [HttpGet("profile")]
+    [Authorize]
+    public async Task<IActionResult> GetProfile()
+    {
+        try
+        {
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
             {
-                _logger.LogError(ex, "Error retrieving user profile");
-                return StatusCode(500, new { message = "An internal error occurred" });
+                return Unauthorized();
             }
+
+            var userId = int.Parse(userIdClaim.Value);
+            var user = await _authService.GetUserByIdAsync(userId);
+
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+
+            return Ok(user);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error retrieving user profile");
+            return StatusCode(500, new { message = "An internal error occurred" });
         }
     }
 }
